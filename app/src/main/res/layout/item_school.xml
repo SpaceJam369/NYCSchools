@@ -27,51 +27,6 @@
             android:textSize="16sp"
             tools:text="UNIVERSITY OF CENTRAL MISSOURI AT MISSOURI ....." />
 
-        <LinearLayout
-            android:id="@+id/satScores_details_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/schoolName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="32dp"
-            android:orientation="vertical"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/list_item_selected" />
-
-            <TextView
-                android:id="@+id/mathSatScore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                tools:text="SAT MATH SCORE: 23" />
-
-            <TextView
-                android:id="@+id/satReadingScore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                tools:text="SAT READING SCORE: 34" />
-
-            <TextView
-                android:id="@+id/satWritingScore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                tools:text="SAT WRITING SCORE: 23" />
-        </LinearLayout>
 
     </RelativeLayout>
 

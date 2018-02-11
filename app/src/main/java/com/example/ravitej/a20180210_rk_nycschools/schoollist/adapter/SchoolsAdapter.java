@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.ravitej.a20180210_rk_nycschools.R;
 import com.example.ravitej.a20180210_rk_nycschools.common.model.School;
+import com.example.ravitej.a20180210_rk_nycschools.common.utils.Utility;
 
 import java.util.List;
 
@@ -19,13 +20,17 @@ import butterknife.ButterKnife;
 public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsAdapterViewHolder>{
 
     private List<School> mSchoolList;
-    private Context mContext;
     private View mEmptyView;
-    private static int mSelectedIndex = -1;
+    private SchoolDetailsOnClickHandler mHandler;
 
-    public SchoolsAdapter(Context context, View view){
-        mContext = context;
+    //Interface to open the dialog on click of an item...
+    public interface SchoolDetailsOnClickHandler{
+        void onClick(School school);
+    }
+
+    public SchoolsAdapter(Context context, View view, SchoolDetailsOnClickHandler handler){
         mEmptyView = view;
+        mHandler = handler;
     }
 
     @Override
@@ -47,14 +52,6 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
         //set school name
         holder.schoolName.setText(school.getSchoolName());
 
-        //set sat details
-        holder.mathScore.setText(mContext.getString(R.string.math_score_text, school.getMathScore()));
-        holder.readingScore.setText(mContext.getString(R.string.reading_score_text, school.getReadingScore()));
-        holder.writingScore.setText(mContext.getString(R.string.writing_score_text, school.getWritingScore()));
-
-        if (mSelectedIndex != -1 && position == mSelectedIndex){
-            holder.detailsLayout.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -71,10 +68,6 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
     public class SchoolsAdapterViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.schoolName) TextView schoolName;
-        @BindView(R.id.satScores_details_layout) LinearLayout detailsLayout;
-        @BindView(R.id.mathSatScore) TextView mathScore;
-        @BindView(R.id.satReadingScore) TextView readingScore;
-        @BindView(R.id.satWritingScore) TextView writingScore;
 
         public SchoolsAdapterViewHolder(View itemView) {
             super(itemView);
@@ -84,8 +77,7 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
 
         @Override
         public void onClick(View view) {
-            mSelectedIndex = getAdapterPosition();
-            notifyDataSetChanged();
+            mHandler.onClick(mSchoolList.get(getAdapterPosition()));
         }
     }
 

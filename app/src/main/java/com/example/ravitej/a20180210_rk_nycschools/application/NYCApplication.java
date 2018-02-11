@@ -33,8 +33,4 @@ public class NYCApplication extends Application {
     public static NetComponent getNetComponent(){
         return mNetComponent;
     }
-
-    public static AppComponent getAppComponent(){
-        return mAppComponent;
-    }
 }

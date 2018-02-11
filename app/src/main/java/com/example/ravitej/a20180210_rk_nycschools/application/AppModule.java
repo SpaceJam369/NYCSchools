@@ -18,12 +18,6 @@ public class AppModule {
         mApplication = application;
     }
 
-    @Provides
-    @AppScoped
-    public SharedPreferences provideSahredPreferences(){
-        return PreferenceManager.getDefaultSharedPreferences(mApplication);
-    }
-
     @AppScoped
     @Provides
     public Context provideContext(){

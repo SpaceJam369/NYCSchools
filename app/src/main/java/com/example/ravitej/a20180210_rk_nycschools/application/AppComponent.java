@@ -12,6 +12,5 @@ import dagger.Component;
 public interface AppComponent  {
 
     Context provideContext();
-    SharedPreferences provideSharedPreferences();
     Application provideApplication();
 }

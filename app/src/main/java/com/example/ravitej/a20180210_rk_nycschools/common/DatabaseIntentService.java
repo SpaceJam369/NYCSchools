@@ -20,7 +20,11 @@ import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchools
 import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.COLUMN_SCHOOL_NAME;
 import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.COLUMN_WRITING_SCORE;
 import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.CONTENT_URI;
+import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.TABLE_NAME;
+import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsProvider.METHOD_VACCUM;
 
+
+//Intent Service is used to insert data into database on fetching from server..
 public class DatabaseIntentService extends IntentService {
 
     public DatabaseIntentService(){super("DatabaseIntentService");}
@@ -37,6 +41,7 @@ public class DatabaseIntentService extends IntentService {
     public static void insertSchools(Context context, List<School> schoolList){
 
         //Insert items at a time to prevent TransactionTooLargeExceptions
+        //FIXME: Why this is inserting duplicate data when partition with 50 items..
         List<List<School>> partitionSchoolLists = Lists.partition(schoolList, 1);
 
         for (List<School> list : partitionSchoolLists){
@@ -48,6 +53,8 @@ public class DatabaseIntentService extends IntentService {
         }
     }
 
+    //before inserting data into database .. delete the existing data as we are not using any logout mechanism ..
+    //delete it first and then insert the data...
     public static void deleteSchools(Context context){
         Intent intent = new Intent(context, DatabaseIntentService.class);
         intent.setAction(DELETE_SCHOOLS);
@@ -65,7 +72,7 @@ public class DatabaseIntentService extends IntentService {
         switch (intent.getAction()){
             case INSERT_SCHOOLS:
                 ArrayList<School> schools = intent.getParcelableArrayListExtra(SCHOOLS_LIST);
-                List<ContentValues> schoolsToInsert = new ArrayList<>(schools.size());
+                List<ContentValues> schoolsToInsert = new ArrayList<>();
 
                 for (School school : schools){
                     values.put(COLUMN_SCHOOL_NAME, school.getSchoolName());
@@ -81,6 +88,7 @@ public class DatabaseIntentService extends IntentService {
                 break;
             case DELETE_SCHOOLS:
                 getContentResolver().delete(CONTENT_URI, null, null);
+                getContentResolver().call(CONTENT_URI, METHOD_VACCUM, TABLE_NAME, null);
             default:
                 break;
         }

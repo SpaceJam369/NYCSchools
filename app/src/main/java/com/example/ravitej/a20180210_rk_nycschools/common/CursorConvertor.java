@@ -4,6 +4,7 @@ import android.database.Cursor;
 
 import com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract;
 import com.example.ravitej.a20180210_rk_nycschools.common.model.School;
+import com.example.ravitej.a20180210_rk_nycschools.common.utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import io.reactivex.annotations.NonNull;
 
 public class CursorConvertor {
 
+    //Convert the data fetched from data base as cursor to Java model object..
     public static List<School> convertSchoolsFromCursor(@NonNull Cursor cursor){
         List<School> schoolList = new ArrayList<>();
 

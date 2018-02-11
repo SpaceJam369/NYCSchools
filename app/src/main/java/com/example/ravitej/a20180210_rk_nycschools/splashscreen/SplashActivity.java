@@ -12,6 +12,8 @@ import com.example.ravitej.a20180210_rk_nycschools.schoollist.SchoolsListActivit
 
 import javax.inject.Inject;
 
+//Created this activity to fetch the initial data ...
+// as we don't have explicit data fetching.. 
 public class SplashActivity extends AppCompatActivity implements SplashContract.View{
 
     @Inject SplashPresenter mPresenter;

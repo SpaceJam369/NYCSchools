@@ -7,9 +7,9 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.CONTENT_URI;
 import static com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract.SchoolEntry.TABLE_NAME;
@@ -20,7 +20,7 @@ public class NYCSchoolsProvider extends ContentProvider{
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private NYCSchoolsDBHelper mDBHelper;
-    private static final String LOG_TAG = NYCSchoolsProvider.class.getSimpleName();
+    public static final String METHOD_VACCUM = "vaccum";
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -107,13 +107,12 @@ public class NYCSchoolsProvider extends ContentProvider{
         String tableName;
         int count;
 
-        Log.e(LOG_TAG, "inside bulk insert");
         switch (match){
             case SCHOOLS:
                 tableName = TABLE_NAME;
                 break;
             default:
-                throw new UnsupportedOperationException("Unknown Uri: "+uri);
+               return super.bulkInsert(uri, values);
         }
 
         db.beginTransaction();
@@ -135,7 +134,6 @@ public class NYCSchoolsProvider extends ContentProvider{
             getContext().getContentResolver().notifyChange(uri, null, false);
         }
 
-        Log.e(LOG_TAG, count + "db count");
         return count;
     }
 
@@ -155,6 +153,25 @@ public class NYCSchoolsProvider extends ContentProvider{
         }
 
         return deletedRecords;
+    }
+
+    @Nullable
+    @Override
+    public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
+        switch (method){
+            case METHOD_VACCUM:
+                vacuum(arg);
+                return null;
+            default:
+                return super.call(method, arg, extras);
+        }
+    }
+
+    //vacuum is used to free unused memory space of database.
+    private void vacuum(@NonNull String tableName) {
+        final SQLiteDatabase db = mDBHelper.getWritableDatabase();
+        final String SQL_VACUUM_TABLE = "VACUUM " +tableName;
+        db.execSQL(SQL_VACUUM_TABLE);
     }
 
     @Override
