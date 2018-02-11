@@ -28,7 +28,7 @@ public class SchoolsPresenter implements SchoolsContract.Presenter,  LoaderManag
     private Context mContext;
     private LoaderManager mLoader;
 
-    private static final int SCHOOL_LOADER = 200;
+    public static final int SCHOOL_LOADER = 200;
     private static final String LOG_TAG = SchoolsPresenter.class.getSimpleName();
 
     @Inject

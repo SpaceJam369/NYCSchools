@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".schoollist.SchoolsListActivity"/>
+        <activity android:name=".schoollist.SchoolsListActivity" />
         <activity android:name=".splashscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,12 @@
         </activity>
 
         <provider
-            android:authorities="com.example.ravitej.a20180210_rk_nycschools"
             android:name=".common.data.NYCSchoolsProvider"
-            android:exported="false"/>
+            android:authorities="com.example.ravitej.a20180210_rk_nycschools"
+            android:exported="false" />
+
         <service android:name=".common.DatabaseIntentService" />
+
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
     private List<School> mSchoolList;
     private Context mContext;
     private View mEmptyView;
+    private static int mSelectedIndex = -1;
 
     public SchoolsAdapter(Context context, View view){
         mContext = context;
@@ -50,6 +51,10 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
         holder.mathScore.setText(mContext.getString(R.string.math_score_text, school.getMathScore()));
         holder.readingScore.setText(mContext.getString(R.string.reading_score_text, school.getReadingScore()));
         holder.writingScore.setText(mContext.getString(R.string.writing_score_text, school.getWritingScore()));
+
+        if (mSelectedIndex != -1 && position == mSelectedIndex){
+            holder.detailsLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -79,7 +84,9 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.SchoolsA
 
         @Override
         public void onClick(View view) {
-            detailsLayout.setVisibility(View.VISIBLE);
+            mSelectedIndex = getAdapterPosition();
+            notifyDataSetChanged();
         }
     }
+
 }
