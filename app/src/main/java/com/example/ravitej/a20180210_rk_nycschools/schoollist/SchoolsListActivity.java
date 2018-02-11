@@ -1,10 +1,9 @@
 package com.example.ravitej.a20180210_rk_nycschools.schoollist;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.ravitej.a20180210_rk_nycschools.R;
@@ -19,8 +18,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
+//TODO: Due to limited time .. I didn't add any Espresso instrumentation test cases..
 public class SchoolsListActivity extends AppCompatActivity implements SchoolsContract.View,
         SchoolsAdapter.SchoolDetailsOnClickHandler{
 

@@ -40,6 +40,8 @@ public class SchoolsPresenter implements SchoolsContract.Presenter,  LoaderManag
 
     @Override
     public void initialize() {
+        //used loaders to retain to fetch the data from content provider
+        //and to retain data during orientation changes..
         mLoader.initLoader(SCHOOL_LOADER, null, this);
     }
 
@@ -65,6 +67,7 @@ public class SchoolsPresenter implements SchoolsContract.Presenter,  LoaderManag
 
         switch (loader.getId()){
             case SCHOOL_LOADER:
+                //Used RxJava Single Operator to convert the cursor data to java model objects in a new thread..
                 Single.just(CursorConvertor.convertSchoolsFromCursor(data))
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
@@ -74,6 +77,7 @@ public class SchoolsPresenter implements SchoolsContract.Presenter,  LoaderManag
 
                             @Override
                             public void onSuccess(List<School> schools) {
+                                //onSuccessful conversion of data notify the data is changed to Adapter to refresh the view..
                                 mView.notifyDataChanged(schools);
                             }
 

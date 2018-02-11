@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.ravitej.a20180210_rk_nycschools.common.data.NYCSchoolsContract;
 import com.example.ravitej.a20180210_rk_nycschools.common.model.School;

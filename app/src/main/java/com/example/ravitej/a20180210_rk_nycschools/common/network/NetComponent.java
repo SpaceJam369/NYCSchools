@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 
+//NetComponent provides dependencies for the networking capabilities that requires them..
 @Singleton
 @Component(dependencies = AppComponent.class, modules = NetModule.class)
 public interface NetComponent {
