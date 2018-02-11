@@ -1,0 +1,102 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.ravitej.a20180210_rk_nycschools"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //Support library
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:preference-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:gridlayout-v7:26.1.0'
+    implementation 'com.android.support:multidex:1.0.2'
+
+//OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+//ButterKnife
+    implementation 'com.jakewharton:butterknife:8.7.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
+//Stetho
+    implementation 'com.facebook.stetho:stetho:1.4.1'
+    implementation'com.facebook.stetho:stetho-okhttp3:1.4.0'
+
+//guava
+    implementation 'com.google.guava:guava:19.0'
+
+//Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.0.0-RC1'
+
+//RxJava2
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+//Dagger
+    implementation 'com.google.dagger:dagger:2.6'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.6'
+
+//Unit Tests
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.6'
+    testImplementation 'org.powermock:powermock-api-mockito:1.6.6'
+    testImplementation 'org.robolectric:robolectric:3.1.2'
+
+//Instrumentation Tests
+    androidTestImplementation 'com.google.dagger:dagger:2.6'
+    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
+    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestAnnotationProcessor 'com.google.dagger:dagger-compiler:2.6'
+    androidTestImplementation 'com.android.support:support-annotations:25.3.0'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+
+// Espresso core
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+// Espresso-contrib for DatePicker, RecyclerView, Drawer actions, Accessibility checks, CountingIdlingResource
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2', {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    })
+
+    androidTestImplementation('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0') {
+        exclude group: 'com.android.support'
+    }
+
+// Espresso-idling-resource for synchronization with background jobs
+    androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+
+// Espresso-intents for validation and stubbing of Intents
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:2.2.2'
+
+// UiAutomator
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+
+// MockWebServer
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.8.1'
+}

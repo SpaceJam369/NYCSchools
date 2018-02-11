@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">20180210-RK-NYCSchools</string>
+    <string name="recycler_view_empty">No Schools found</string>
+
+    <!-- SAT SCORE DETAILS String -->
+    <string name="math_score_text">SAT Math Score: %1$s</string>
+    <string name="reading_score_text">SAT Reading Score: %1$s</string>
+    <string name="writing_score_text">SAT Writing Score: %1$s</string>
+
+</resources>
