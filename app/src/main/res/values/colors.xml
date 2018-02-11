@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4D148C</color>
+    <color name="colorPrimaryDark">#340e5f</color>
+    <color name="colorAccent">#FF6600</color>
 
     <!-- list item selected color-->
     <color name="list_item_selected">#ECEFF1</color>
+
+    <style name="AppTheme.Main" parent="@style/AppTheme"/>
+
 </resources>

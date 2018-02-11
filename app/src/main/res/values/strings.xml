@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">20180210-RK-NYCSchools</string>
+    <string name="app_name">NYC Schools</string>
     <string name="recycler_view_empty">No Schools found</string>
 
     <!-- SAT SCORE DETAILS String -->
